@@ -1,0 +1,77 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "semi": "warn",
+    "no-console": "error",
+    "indent": [
+      "error",
+      2
+    ],
+    "no-trailing-spaces": [
+      "error",
+      {
+        "skipBlankLines": false
+      }
+    ],
+    "no-empty": "error",
+    "no-dupe-args": "error",
+    "no-extra-semi": "error",
+    "no-lone-blocks": "error",
+    "no-empty-function": "error",
+    "no-multi-spaces": "error",
+    "no-return-assign": "error",
+    "no-self-assign": "error",
+    "no-self-compare": "error",
+    "no-unmodified-loop-condition": "error",
+    "curly": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ],
+    "max-depth": "error",
+    "max-lines": [
+      "error",
+      {
+        "max": 250,
+        "skipBlankLines": true
+      }
+    ],
+    "camelcase": "error",
+    "brace-style": "error",
+    "id-length": [
+      "error",
+      {
+        "min": 2,
+        "max": 40
+      }
+    ],
+    "func-call-spacing": "error",
+    "no-lonely-if": "error",
+    "new-cap": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 2,
+        "maxEOF": 1
+      }
+    ],
+    "no-mixed-spaces-and-tabs": "error",
+    "no-var": "error",
+    "no-global-assign": 2,
+    "no-else-return": 2,
+    "object-curly-spacing": "error",
+    "no-inner-declarations": "error",
+    "no-unexpected-multiline": "error",
+    "for-direction": "error",
+    "no-useless-concat": "error"
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "parser": "babel-eslint"
+}
