@@ -2,4 +2,4 @@ fileignoreconfig:
 - filename: src/components/wordsBar/WordsBar.js
   checksum: 62f2f802e12cf4326109032fe6250527af6389d90ed278806ddf54dbcd336618
 - filename: yarn.lock
-  checksum: f7db68151e30e3795b562657c17e477cbb6191fec6341ace036b547f83d9fec9
+  checksum: fc3fb1f6358eb5a6ebf7058ad30228fe7f7592ba9dea99cd46ff5cfb588391f2

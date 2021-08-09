@@ -1,15 +1,22 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const Timer = ({maxSeconds}) => {
   const [seconds, setSeconds] = useState(maxSeconds);
+  const [timerId, setTimerId] = useState();
 
   const decreaseOneSecond = () => {
     setSeconds((seconds) => seconds - 1);
   };
 
+  useEffect(() => {
+    if (seconds === 0) {
+      clearInterval(timerId);
+    }
+  }, [seconds]);
+
   const startTimer = () => {
-    const timerId = setInterval(() => decreaseOneSecond(), 1000);
-    setTimeout(() => clearInterval(timerId), maxSeconds * 1000);
+    clearInterval(timerId);
+    setTimerId(setInterval(() => decreaseOneSecond(), 1000));
   };
 
   return (
