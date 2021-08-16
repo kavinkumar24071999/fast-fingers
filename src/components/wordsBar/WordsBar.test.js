@@ -19,4 +19,10 @@ describe('WordsBar', function () {
 
     expect(wrapper.find('.highlight').at(0).text()).toEqual(' test ');
   });
+
+  it('should highlight current word when the input word is part of the current word', function () {
+    const wrapper = shallow(<WordsBar inputWord={'tes'} randomWords={randomWords} wordIndex={0}/>);
+
+    expect(wrapper.find('.highlight').at(0).text()).toEqual(' test ');
+  });
 });

@@ -2,7 +2,7 @@ import './App.css';
 import InputBar from './components/inputBar/InputBar';
 import Timer from './components/timer/Timer';
 import WordsBar from "./components/wordsBar/WordsBar";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import words from "./data/data";
 
 export default App;
@@ -17,7 +17,11 @@ function App() {
     return words.sort(() => (Math.random() > .5) ? 1 : -1);
   };
 
-  const [randomWords] = useState(getRandomWords());
+  const [randomWords, setRandomWords] = useState([]);
+
+  useEffect(() => {
+    setRandomWords(getRandomWords());
+  }, [isTimerRunning]);
 
   const incrementWordIndexByOne = () => {
     setCurrentWordIndex(currentWordIndex + 1);
@@ -33,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <InputBar word={word} setWord={setWord} incrementWordIndexByOne={incrementWordIndexByOne}/>
-      <Timer maxSeconds={10} onTimerStart={onTimerStart} onTimerEnd={onTimerEnd}/>
+      <Timer maxSeconds={20} onTimerStart={onTimerStart} onTimerEnd={onTimerEnd}/>
       {isTimerRunning && <WordsBar inputWord={word} wordIndex={currentWordIndex} randomWords={randomWords}/>}
     </div>
   );
