@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should have home page 1`] = `"<div class=\\"App\\"><header class=\\"App-header\\">Learn React</header><div class=\\"input-bar\\"><input value=\\"\\"/></div><div class=\\"Timer\\"><button>Start</button><div class=\\"seconds\\">Remaining Seconds: 10</div></div></div>"`;
+exports[`App should match snapshot 1`] = `"<div class=\\"App\\"><div class=\\"input-bar\\"><input value=\\"\\"/></div><div class=\\"Timer\\"><button>Start</button><div class=\\"seconds\\">Remaining Seconds: 10</div></div></div>"`;
