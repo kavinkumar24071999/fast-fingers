@@ -5,6 +5,7 @@ import Timer from './Timer';
 
 Enzyme.configure({adapter: new Adapter()});
 jest.useFakeTimers();
+const mockSetTimerRunning = jest.fn();
 
 describe('Timer', function () {
   it('should have a start button', function () {
@@ -13,7 +14,7 @@ describe('Timer', function () {
   });
 
   it('should start the timer, when the start button is clicked', () => {
-    const wrapper = shallow(<Timer maxSeconds={60}/>);
+    const wrapper = shallow(<Timer maxSeconds={60} setTimerRunning={mockSetTimerRunning}/>);
 
     const startButton = wrapper.find('button');
     startButton.simulate('click');
@@ -22,7 +23,7 @@ describe('Timer', function () {
   });
 
   it('should call clear interval when remaining seconds is zero', function () {
-    const wrapper = mount(<Timer maxSeconds={0}/>);
+    const wrapper = mount(<Timer maxSeconds={0} setTimerRunning={mockSetTimerRunning}/>);
 
     const startButton = wrapper.find('button');
     startButton.simulate('click');

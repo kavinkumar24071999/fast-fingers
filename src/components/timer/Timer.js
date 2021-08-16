@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-const Timer = ({maxSeconds}) => {
+const Timer = ({maxSeconds, setTimerRunning}) => {
   const [seconds, setSeconds] = useState(maxSeconds);
   const [timerId, setTimerId] = useState();
 
@@ -10,11 +10,14 @@ const Timer = ({maxSeconds}) => {
 
   useEffect(() => {
     if (seconds === 0) {
+      setTimerRunning(false);
       clearInterval(timerId);
     }
   }, [seconds]);
 
   const startTimer = () => {
+    setSeconds(maxSeconds);
+    setTimerRunning(true);
     clearInterval(timerId);
     setTimerId(setInterval(() => decreaseOneSecond(), 1000));
   };

@@ -30,4 +30,10 @@ describe('App', function () {
 
     expect(wrapper.find('WordsBar')).toHaveLength(1);
   });
+
+  it('should not display words bar when timer is running', function () {
+    const wrapper = mount(<App/>);
+
+    expect(wrapper.find('WordsBar')).toHaveLength(0);
+  });
 });
