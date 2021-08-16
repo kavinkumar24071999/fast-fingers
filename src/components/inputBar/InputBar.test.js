@@ -4,34 +4,36 @@ import InputBar from './InputBar';
 
 Enzyme.configure({adapter: new Adapter()});
 
+const mockSetWord = jest.fn();
+
 describe('Input bar', () => {
   it('should match snapshot', () => {
-    const wrapper = shallow(<InputBar />);
+    const wrapper = shallow(<InputBar/>);
 
     expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('should have input field', () => {
-    const wrapper = shallow(<InputBar />);
+    const wrapper = shallow(<InputBar/>);
 
     expect(wrapper.find('input')).toHaveLength(1);
   });
 
   it('should change input on change of value', () => {
-    const wrapper = shallow(<InputBar />);
+    const wrapper = shallow(<InputBar word={''} setWord={mockSetWord}/>);
 
     const event = {target: {value: 'inp'}};
     wrapper.find('input').simulate('change', event);
 
-    expect(wrapper.find('input').prop('value')).toEqual("inp");
+    expect(mockSetWord).toBeCalledWith("inp");
   });
 
   it('should clear input when the value contains space', () => {
-    const wrapper = shallow(<InputBar />);
+    const wrapper = shallow(<InputBar word={''} setWord={mockSetWord}/>);
 
     const event = {target: {value: 'inp '}};
     wrapper.find('input').simulate('change', event);
 
-    expect(wrapper.find('input').prop('value')).toEqual("");
+    expect(mockSetWord).toBeCalledWith("");
   });
 });

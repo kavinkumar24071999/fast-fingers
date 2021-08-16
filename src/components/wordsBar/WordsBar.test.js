@@ -17,4 +17,10 @@ describe('WordsBar', function () {
 
     expect(wrapper.find('.words-bar').text()).toEqual(" one  test ");
   });
+
+  it('should highlight current word when the input word is same as current word', function () {
+    const wrapper = shallow(<WordsBar inputWord={'test'}/>);
+
+    expect(wrapper.find('.highlight').at(0).text()).toEqual(' test ');
+  });
 });

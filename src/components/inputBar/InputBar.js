@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 const SPACE = ' ';
-const EMPTY = '';
+const EMPTY_WORD = '';
 
-const InputBar = () => {
-  const [word, setWord] = useState(EMPTY);
+const InputBar = ({word, setWord}) => {
 
   const handleChange = (word) => {
     if (word.includes(SPACE)) {
-      setWord(EMPTY);
+      setWord(EMPTY_WORD);
     } else {
       setWord(word);
     }
@@ -16,7 +15,7 @@ const InputBar = () => {
 
   return (
     <div className="input-bar">
-      <input value={word || EMPTY} onChange={(event) => handleChange(event.target.value)} />
+      <input value={word || EMPTY_WORD} onChange={(event) => handleChange(event.target.value)}/>
     </div>
   );
 };

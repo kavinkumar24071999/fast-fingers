@@ -36,4 +36,6 @@ describe('App', function () {
 
     expect(wrapper.find('WordsBar')).toHaveLength(0);
   });
+
+  //todo write test for 'should not display words bar when timer stops'
 });
