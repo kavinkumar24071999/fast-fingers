@@ -13,6 +13,7 @@ function App() {
   const [isTimerRunning, setTimerRunning] = useState(false);
   const [word, setWord] = useState(EMPTY_WORD);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [wordPermanentStyle, setWordPermanentStyle] = useState({});
   const getRandomWords = () => {
     return words.sort(() => (Math.random() > .5) ? 1 : -1);
   };
@@ -31,6 +32,16 @@ function App() {
     setTimerRunning(true);
   };
 
+  const getWordPermanentStyle = (currentWordInWordsBar, index) => {
+    if (currentWordInWordsBar === word && currentWordInWordsBar.length === word.length &&
+      randomWords[currentWordIndex] === word) {
+      setWordPermanentStyle(wordPermanentStyle => {
+        wordPermanentStyle[index] = 'correct';
+        return wordPermanentStyle;
+      });
+    }
+  };
+
   const onTimerEnd = () => {
     setTimerRunning(false);
   };
@@ -38,7 +49,8 @@ function App() {
     <div className="App">
       <InputBar word={word} setWord={setWord} incrementWordIndexByOne={incrementWordIndexByOne}/>
       <Timer maxSeconds={20} onTimerStart={onTimerStart} onTimerEnd={onTimerEnd}/>
-      {isTimerRunning && <WordsBar inputWord={word} wordIndex={currentWordIndex} randomWords={randomWords}/>}
+      {isTimerRunning && <WordsBar inputWord={word} wordIndex={currentWordIndex} randomWords={randomWords}
+        getWordPermanentStyle={getWordPermanentStyle} wordPermanentStyle={wordPermanentStyle}/>}
     </div>
   );
 }

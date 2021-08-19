@@ -2,6 +2,10 @@
     background-color: aqua;
 }
 
-.highlight-wrong{
+.highlight-wrong {
     background-color: red;
+}
+
+.correct {
+    color: green;
 }
