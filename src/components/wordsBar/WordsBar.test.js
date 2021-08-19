@@ -17,12 +17,18 @@ describe('WordsBar', function () {
   it('should highlight current word when the input word is same as current word', function () {
     const wrapper = shallow(<WordsBar inputWord={'test'} randomWords={randomWords} wordIndex={0}/>);
 
-    expect(wrapper.find('.highlight').at(0).text()).toEqual(' test ');
+    expect(wrapper.find('.highlight-correct').at(0).text()).toEqual(' test ');
   });
 
   it('should highlight current word when the input word is part of the current word', function () {
     const wrapper = shallow(<WordsBar inputWord={'tes'} randomWords={randomWords} wordIndex={0}/>);
 
-    expect(wrapper.find('.highlight').at(0).text()).toEqual(' test ');
+    expect(wrapper.find('.highlight-correct').at(0).text()).toEqual(' test ');
   });
+
+  it('should highlight the current word in red when the input word is not same as the current word',()=>{
+    const wrapper = shallow(<WordsBar inputWord={'tea'} randomWords={randomWords} wordIndex={0}/>);
+
+    expect(wrapper.find('.highlight-wrong').at(0).text()).toEqual(' test ');
+  })
 });

@@ -1,3 +1,7 @@
-.highlight {
+.highlight-correct {
     background-color: aqua;
+}
+
+.highlight-wrong{
+    background-color: red;
 }

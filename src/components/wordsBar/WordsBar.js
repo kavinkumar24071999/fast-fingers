@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import './WordsBar.css';
 
 const WordsBar = ({inputWord, wordIndex, randomWords}) => {
@@ -8,7 +8,10 @@ const WordsBar = ({inputWord, wordIndex, randomWords}) => {
       return;
     }
     if (randomWords[wordIndex].includes(inputWord) && word.includes(inputWord)) {
-      return 'highlight';
+      return 'highlight-correct';
+    }
+    if(!randomWords[wordIndex].includes(inputWord) || !word.includes(inputWord)){
+      return 'highlight-wrong';
     }
   }
 
