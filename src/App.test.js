@@ -29,6 +29,17 @@ describe('App', function () {
     expect(wrapper.find('InputBar')).toHaveLength(1);
   });
 
+  it('should clear input when the value contains space', () => {
+    const wrapper = mount(<App/>);
+
+    wrapper.find('button').simulate('click');
+    const event = {target: {value: 'test'}};
+    wrapper.find('input').simulate('change', event);
+    wrapper.find('input').simulate('change', {target: {value: ' '}});
+
+    expect(wrapper.find("input").text()).toEqual("");
+  });
+
   it('should display words bar when timer is running', function () {
     const wrapper = mount(<App/>);
 
@@ -47,11 +58,21 @@ describe('App', function () {
     const wrapper = mount(<App/>);
 
     wrapper.find('button').simulate('click');
-    const event = {target: {value: 'test'}};
+    const event = {target: {value: 'test '}};
+    wrapper.find('input').simulate('change', event);
+
+    expect(wrapper.find('.correct').at(0).text()).toEqual(' test ');
+  });
+
+  it('should set the class name as incorrect when completed input word is not same as current word',()=>{
+    const wrapper = mount(<App/>);
+
+    wrapper.find('button').simulate('click');
+    const event = {target: {value: 'tes'}};
     wrapper.find('input').simulate('change', event);
     wrapper.find('input').simulate('change', {target: {value: ' '}});
 
-    expect(wrapper.find('.correct').at(0).text()).toEqual(' test ');
+    expect(wrapper.find('.incorrect').at(0).text()).toEqual(' test ');
   });
 
   //todo write test for 'should not display words bar when timer stops'

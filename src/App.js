@@ -24,6 +24,14 @@ function App() {
     setRandomWords(getRandomWords());
   }, [isTimerRunning]);
 
+  useEffect(() => {
+    if (word.includes(" ")) {
+      wordPermanentStyleHandler();
+      setWord("");
+      incrementWordIndexByOne();
+    }
+  }, [word]);
+
   const incrementWordIndexByOne = () => {
     setCurrentWordIndex(currentWordIndex + 1);
   };
@@ -32,11 +40,15 @@ function App() {
     setTimerRunning(true);
   };
 
-  const getWordPermanentStyle = (currentWordInWordsBar, index) => {
-    if (currentWordInWordsBar === word && currentWordInWordsBar.length === word.length &&
-      randomWords[currentWordIndex] === word) {
+  const wordPermanentStyleHandler = () => {
+    if (randomWords[currentWordIndex].length === word.trim().length && randomWords[currentWordIndex] === word.trim()) {
       setWordPermanentStyle(wordPermanentStyle => {
-        wordPermanentStyle[index] = 'correct';
+        wordPermanentStyle[currentWordIndex] = 'correct';
+        return wordPermanentStyle;
+      });
+    } else {
+      setWordPermanentStyle(wordPermanentStyle => {
+        wordPermanentStyle[currentWordIndex] = 'incorrect';
         return wordPermanentStyle;
       });
     }
@@ -47,10 +59,10 @@ function App() {
   };
   return (
     <div className="App">
-      <InputBar word={word} setWord={setWord} incrementWordIndexByOne={incrementWordIndexByOne}/>
+      <InputBar word={word} setWord={setWord}/>
       <Timer maxSeconds={20} onTimerStart={onTimerStart} onTimerEnd={onTimerEnd}/>
       {isTimerRunning && <WordsBar inputWord={word} wordIndex={currentWordIndex} randomWords={randomWords}
-        getWordPermanentStyle={getWordPermanentStyle} wordPermanentStyle={wordPermanentStyle}/>}
+        wordPermanentStyle={wordPermanentStyle}/>}
     </div>
   );
 }

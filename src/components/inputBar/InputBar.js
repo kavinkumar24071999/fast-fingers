@@ -1,17 +1,11 @@
 import React from 'react';
 
-const SPACE = ' ';
 const EMPTY_WORD = '';
 
-const InputBar = ({word, setWord, incrementWordIndexByOne}) => {
+const InputBar = ({word, setWord}) => {
 
   const handleChange = (word) => {
-    if (word.includes(SPACE)) {
-      incrementWordIndexByOne();
-      setWord(EMPTY_WORD);
-    } else {
-      setWord(word);
-    }
+    setWord(word);
   };
 
   return (

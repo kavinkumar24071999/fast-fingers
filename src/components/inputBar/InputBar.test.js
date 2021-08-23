@@ -5,7 +5,6 @@ import InputBar from './InputBar';
 Enzyme.configure({adapter: new Adapter()});
 
 const mockSetWord = jest.fn();
-const mockIncrementWordIndex = jest.fn();
 
 describe('Input bar', () => {
   it('should match snapshot', () => {
@@ -21,8 +20,7 @@ describe('Input bar', () => {
   });
 
   it('should change input on change of value', () => {
-    const wrapper = shallow(<InputBar word={''} setWord={mockSetWord}
-      incrementWordIndexByOne={mockIncrementWordIndex}/>);
+    const wrapper = shallow(<InputBar word={''} setWord={mockSetWord}/>);
 
     const event = {target: {value: 'inp'}};
     wrapper.find('input').simulate('change', event);
@@ -30,13 +28,4 @@ describe('Input bar', () => {
     expect(mockSetWord).toBeCalledWith("inp");
   });
 
-  it('should clear input when the value contains space', () => {
-    const wrapper = shallow(<InputBar word={''} setWord={mockSetWord}
-      incrementWordIndexByOne={mockIncrementWordIndex}/>);
-
-    const event = {target: {value: 'inp '}};
-    wrapper.find('input').simulate('change', event);
-
-    expect(mockSetWord).toBeCalledWith("");
-  });
 });

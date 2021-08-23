@@ -1,10 +1,9 @@
 import React from "react";
 import './WordsBar.css';
 
-const WordsBar = ({inputWord, wordIndex, randomWords, getWordPermanentStyle, wordPermanentStyle}) => {
+const WordsBar = ({inputWord, wordIndex, randomWords, wordPermanentStyle}) => {
 
   function getClassName(word, index) {
-    getWordPermanentStyle(word, index);
     if (index !== wordIndex || !inputWord) {
       return;
     }
