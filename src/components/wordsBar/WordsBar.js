@@ -4,7 +4,7 @@ import './WordsBar.css';
 const WordsBar = ({inputWord, wordIndex, randomWords, wordPermanentStyle}) => {
 
   function getClassName(word, index) {
-    if (index !== wordIndex || !inputWord) {
+    if (index !== wordIndex) {
       return;
     }
     if (randomWords[wordIndex].includes(inputWord) && word.includes(inputWord)) {
