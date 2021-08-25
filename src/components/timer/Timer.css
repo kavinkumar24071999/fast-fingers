@@ -1,0 +1,8 @@
+.Timer{
+    display: flex;
+    justify-content: center;
+}
+
+.Timer button,div{
+    margin: 10px;
+}

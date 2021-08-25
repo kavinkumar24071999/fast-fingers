@@ -59,10 +59,10 @@ function App() {
   };
   return (
     <div className="App">
-      <InputBar word={word} setWord={setWord}/>
-      <Timer maxSeconds={20} onTimerStart={onTimerStart} onTimerEnd={onTimerEnd}/>
       {isTimerRunning && <WordsBar inputWord={word} wordIndex={currentWordIndex} randomWords={randomWords}
-        wordPermanentStyle={wordPermanentStyle}/>}
+        wordPermanentStyle={wordPermanentStyle} />}
+      <InputBar word={word} setWord={setWord} />
+      <Timer maxSeconds={20} onTimerStart={onTimerStart} onTimerEnd={onTimerEnd} />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import './InputBar.css';
 
 const EMPTY_WORD = '';
 
@@ -10,7 +11,7 @@ const InputBar = ({word, setWord}) => {
 
   return (
     <div className="input-bar">
-      <input value={word || EMPTY_WORD} onChange={(event) => handleChange(event.target.value)}/>
+      <input value={word || EMPTY_WORD} onChange={(event) => handleChange(event.target.value)} />
     </div>
   );
 };

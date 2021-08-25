@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import './Timer.css';
 
 const Timer = ({maxSeconds, onTimerStart, onTimerEnd}) => {
   const [seconds, setSeconds] = useState(maxSeconds);
