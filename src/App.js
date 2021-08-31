@@ -9,6 +9,7 @@ export default App;
 
 const EMPTY_WORD = '';
 const SPACE = " ";
+const MAX_WORDS = 10;
 
 function App() {
   const [isTimerRunning, setTimerRunning] = useState(false);
@@ -22,7 +23,7 @@ function App() {
   const [randomWords, setRandomWords] = useState([]);
 
   useEffect(() => {
-    isTimerRunning && setRandomWords(getRandomWords());
+    isTimerRunning && setRandomWords(getRandomWords().slice(0, MAX_WORDS));
   }, [isTimerRunning]);
 
   useEffect(() => {
@@ -30,6 +31,11 @@ function App() {
       wordPermanentStyleHandler();
       setInputWord(EMPTY_WORD);
       incrementWordIndexByOne();
+    }
+    if (currentWordIndex >= MAX_WORDS) {
+      setRandomWords(getRandomWords().slice(0, MAX_WORDS));
+      setCurrentWordIndex(0);
+      setWordPermanentStyle({});
     }
   }, [inputWord]);
 
@@ -67,7 +73,7 @@ function App() {
       {isTimerRunning && <WordsBar inputWord={inputWord} wordIndex={currentWordIndex} randomWords={randomWords}
         wordPermanentStyle={wordPermanentStyle} />}
       <InputBar word={inputWord} setWord={setInputWord} />
-      <Timer maxSeconds={20} onTimerStart={onTimerStart} onTimerEnd={onTimerEnd} />
+      <Timer maxSeconds={60} onTimerStart={onTimerStart} onTimerEnd={onTimerEnd} />
     </div>
   );
 }
