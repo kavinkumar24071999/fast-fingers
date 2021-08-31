@@ -8,10 +8,11 @@ import words from "./data/data";
 export default App;
 
 const EMPTY_WORD = '';
+const SPACE = " ";
 
 function App() {
   const [isTimerRunning, setTimerRunning] = useState(false);
-  const [word, setWord] = useState(EMPTY_WORD);
+  const [inputWord, setInputWord] = useState(EMPTY_WORD);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [wordPermanentStyle, setWordPermanentStyle] = useState({});
   const getRandomWords = () => {
@@ -21,16 +22,16 @@ function App() {
   const [randomWords, setRandomWords] = useState([]);
 
   useEffect(() => {
-    setRandomWords(getRandomWords());
+    isTimerRunning && setRandomWords(getRandomWords());
   }, [isTimerRunning]);
 
   useEffect(() => {
-    if (word.includes(" ")) {
+    if (inputWord.includes(SPACE)) {
       wordPermanentStyleHandler();
-      setWord("");
+      setInputWord(EMPTY_WORD);
       incrementWordIndexByOne();
     }
-  }, [word]);
+  }, [inputWord]);
 
   const incrementWordIndexByOne = () => {
     setCurrentWordIndex(currentWordIndex + 1);
@@ -41,7 +42,8 @@ function App() {
   };
 
   const wordPermanentStyleHandler = () => {
-    if (randomWords[currentWordIndex].length === word.trim().length && randomWords[currentWordIndex] === word.trim()) {
+    if (randomWords[currentWordIndex].length === inputWord.trim().length
+      && randomWords[currentWordIndex] === inputWord.trim()) {
       setWordPermanentStyle(wordPermanentStyle => {
         wordPermanentStyle[currentWordIndex] = 'correct';
         return wordPermanentStyle;
@@ -55,13 +57,16 @@ function App() {
   };
 
   const onTimerEnd = () => {
+    setCurrentWordIndex(0);
+    setWordPermanentStyle({});
     setTimerRunning(false);
   };
+
   return (
     <div className="App">
-      {isTimerRunning && <WordsBar inputWord={word} wordIndex={currentWordIndex} randomWords={randomWords}
+      {isTimerRunning && <WordsBar inputWord={inputWord} wordIndex={currentWordIndex} randomWords={randomWords}
         wordPermanentStyle={wordPermanentStyle} />}
-      <InputBar word={word} setWord={setWord} />
+      <InputBar word={inputWord} setWord={setInputWord} />
       <Timer maxSeconds={20} onTimerStart={onTimerStart} onTimerEnd={onTimerEnd} />
     </div>
   );
