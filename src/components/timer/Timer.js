@@ -25,7 +25,7 @@ const Timer = ({maxSeconds, onTimerStart, onTimerEnd}) => {
 
   return (
     <div className={"Timer"}>
-      <button onClick={() => startTimer()}>Start</button>
+      <button onClick={startTimer}>Start</button>
       <div className="seconds">Remaining Seconds: {seconds}</div>
     </div>
   );

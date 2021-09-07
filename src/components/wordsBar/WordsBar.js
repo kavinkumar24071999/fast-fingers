@@ -1,16 +1,20 @@
 import React from "react";
 import './WordsBar.css';
 
-const WordsBar = ({inputWord, wordIndex, randomWords, wordPermanentStyle}) => {
+const WordsBar = ({inputWord, inputWordIndex, randomWords, wordPermanentStyle}) => {
 
-  function getClassName(word, index) {
-    if (index !== wordIndex) {
-      return;
+  function getStyleFor(randomWord, randomWordIndex) {
+    if (wordPermanentStyle[randomWordIndex]) {
+      return wordPermanentStyle[randomWordIndex];
     }
-    if (randomWords[wordIndex].includes(inputWord) && word.includes(inputWord)) {
+    const isRandomWordNotCurrentWord = randomWordIndex !== inputWordIndex;
+    if (isRandomWordNotCurrentWord) {
+      return 'ordinary';
+    }
+    if (randomWord.includes(inputWord)) {
       return 'highlight-correct';
     }
-    if (!randomWords[wordIndex].includes(inputWord) || !word.includes(inputWord)) {
+    if (!randomWord.includes(inputWord)) {
       return 'highlight-wrong';
     }
   }
@@ -18,7 +22,7 @@ const WordsBar = ({inputWord, wordIndex, randomWords, wordPermanentStyle}) => {
   return (<div className={'words-bar'}>
     {randomWords.map((word, index) => {
       return <div key={index}
-        className={wordPermanentStyle[index] || getClassName(word, index)}> {word} </div>;
+        className={ getStyleFor(word, index)}> {word} </div>;
     })}
   </div>);
 };
